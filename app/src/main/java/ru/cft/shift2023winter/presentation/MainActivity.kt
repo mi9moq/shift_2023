@@ -1,7 +1,8 @@
-package ru.cft.shift2023winter
+package ru.cft.shift2023winter.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.cft.shift2023winter.R
 
 class MainActivity : AppCompatActivity() {
 
