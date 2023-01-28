@@ -6,7 +6,11 @@ import dagger.Component
 import ru.cft.shift2023winter.presentation.AnimeApplication
 
 @ApplicationScope
-@Component()
+@Component(
+    modules = [
+        DataModule::class
+    ]
+)
 interface ApplicationComponent {
 
     fun inject(application: AnimeApplication)
