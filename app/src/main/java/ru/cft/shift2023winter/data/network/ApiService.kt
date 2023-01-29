@@ -5,13 +5,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("popular")
-    suspend fun loadPopularAnimeList(): List<AnimeItemDto>
+    @GET("top-airing")
+    suspend fun loadPopularAnimeList(): AnimeListResponse
 
-    @GET("popular")
-    suspend fun loadPopularAnimeList(@Query(QUERY_PARAM_PAGE) page: Int): List<AnimeItemDto>
+    @GET("top-airing")
+    suspend fun loadPopularAnimeList(@Query(QUERY_PARAM_PAGE) page: Int): AnimeListResponse
 
-    @GET("anime-details/{$PATH_PARAM_ANIME_ID}")
+    @GET("info/{$PATH_PARAM_ANIME_ID}")
     suspend fun loadAnimeDetails(@Path(PATH_PARAM_ANIME_ID) animeId: String): AnimeDetailInfoDto
 
     companion object {
