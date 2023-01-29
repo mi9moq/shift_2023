@@ -7,11 +7,15 @@ import ru.cft.shift2023winter.domain.entity.AnimeItem
 import javax.inject.Inject
 
 class Mapper @Inject constructor() {
-    fun mapAnimeItemDtoToEntity(animeItemDto: AnimeItemDto) = AnimeItem(
+    private fun mapAnimeItemDtoToEntity(animeItemDto: AnimeItemDto) = AnimeItem(
         id = animeItemDto.id,
         title = animeItemDto.title,
         imageUrl = animeItemDto.imageUrl
     )
+
+    fun mapPopularAnimeListToListEntity(list: List<AnimeItemDto>) = list.map {
+        mapAnimeItemDtoToEntity(it)
+    }
 
     fun mapAnimeDetailInfoDtoToEntity(animeDetailInfoDto: AnimeDetailInfoDto) = AnimeDetailInfo(
         title = animeDetailInfoDto.title,
