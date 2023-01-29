@@ -8,5 +8,5 @@ interface AnimeRepository {
 
     fun loadBestAnimeList(): Flow<List<AnimeItem>>
 
-    fun loadAnimeDetail(title: String): Flow<AnimeDetailInfo>
+    fun loadAnimeDetail(animeId: String): Flow<AnimeDetailInfo>
 }
