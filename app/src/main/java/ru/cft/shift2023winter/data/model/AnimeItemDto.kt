@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.data.network.model
+package ru.cft.shift2023winter.data.model
 
 
 data class AnimeItemDto(

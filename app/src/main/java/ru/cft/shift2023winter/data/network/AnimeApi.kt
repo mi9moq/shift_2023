@@ -3,8 +3,8 @@ package ru.cft.shift2023winter.data.network
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.cft.shift2023winter.data.network.model.AnimeDetailInfoDto
-import ru.cft.shift2023winter.data.network.model.AnimeListResponse
+import ru.cft.shift2023winter.data.model.AnimeDetailInfoDto
+import ru.cft.shift2023winter.data.model.AnimeListResponse
 
 interface AnimeApi {
     @GET("top-airing")

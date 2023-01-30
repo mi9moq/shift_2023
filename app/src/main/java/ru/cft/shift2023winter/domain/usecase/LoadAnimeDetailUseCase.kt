@@ -8,5 +8,5 @@ class LoadAnimeDetailUseCase @Inject constructor(
     private val repository: AnimeRepository
 ) {
     suspend operator fun invoke(animeId: String): AnimeDetailInfo =
-        repository.loadAnimeDetail(animeId = animeId)
+        repository.loadAnimeDetail(animeId)
 }
