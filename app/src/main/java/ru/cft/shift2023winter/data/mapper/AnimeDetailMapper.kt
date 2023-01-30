@@ -1,10 +1,10 @@
 package ru.cft.shift2023winter.data.mapper
 
-import ru.cft.shift2023winter.data.network.AnimeDetailInfoDto
+import ru.cft.shift2023winter.data.network.model.AnimeDetailInfoDto
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
 import javax.inject.Inject
 
-class MapperAnimeDetail @Inject constructor() {
+class AnimeDetailMapper @Inject constructor() {
     fun mapAnimeDetailInfoDtoToEntity(anime: AnimeDetailInfoDto) = AnimeDetailInfo(
         title = anime.title,
         image = anime.image,

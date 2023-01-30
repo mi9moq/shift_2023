@@ -3,8 +3,10 @@ package ru.cft.shift2023winter.data.network
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.cft.shift2023winter.data.network.model.AnimeDetailInfoDto
+import ru.cft.shift2023winter.data.network.model.AnimeListResponse
 
-interface ApiService {
+interface AnimeApi {
     @GET("top-airing")
     suspend fun loadPopularAnimeList(): AnimeListResponse
 

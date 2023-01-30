@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import ru.cft.shift2023winter.data.network.ApiFactory
-import ru.cft.shift2023winter.data.network.ApiService
+import ru.cft.shift2023winter.data.network.AnimeApi
 import ru.cft.shift2023winter.data.repository.AnimeRepositoryImpl
 import ru.cft.shift2023winter.domain.repository.AnimeRepository
 
@@ -17,8 +17,8 @@ interface DataModule {
     companion object {
         @ApplicationScope
         @Provides
-        fun provideApiService(): ApiService {
-            return ApiFactory.apiService
+        fun provideApiService(): AnimeApi {
+            return ApiFactory.animeApi
         }
     }
 }
