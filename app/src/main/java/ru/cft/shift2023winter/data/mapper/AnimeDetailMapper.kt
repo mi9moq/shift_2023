@@ -1,6 +1,6 @@
 package ru.cft.shift2023winter.data.mapper
 
-import ru.cft.shift2023winter.data.network.model.AnimeDetailInfoDto
+import ru.cft.shift2023winter.data.model.AnimeDetailInfoDto
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
 import javax.inject.Inject
 
