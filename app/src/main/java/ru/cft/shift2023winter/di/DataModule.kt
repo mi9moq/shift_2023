@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import ru.cft.shift2023winter.data.network.AnimeApi
 import ru.cft.shift2023winter.data.repository.AnimeRepositoryImpl
 import ru.cft.shift2023winter.domain.repository.AnimeRepository
@@ -20,17 +21,15 @@ interface DataModule {
 
         @ApplicationScope
         @Provides
-        fun provideAnimeApi(retrofit: Retrofit): AnimeApi {
-            return retrofit.create(AnimeApi::class.java)
-        }
+        fun provideAnimeApi(retrofit: Retrofit): AnimeApi =
+            retrofit.create()
 
         @ApplicationScope
         @Provides
-        fun provideRetrofit(): Retrofit {
-            return Retrofit.Builder()
+        fun provideRetrofit(): Retrofit =
+            Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        }
     }
 }

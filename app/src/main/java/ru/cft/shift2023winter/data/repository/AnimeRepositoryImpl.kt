@@ -19,5 +19,5 @@ class AnimeRepositoryImpl @Inject constructor(
         }
 
     override suspend fun loadAnimeDetail(animeId: String): AnimeDetailInfo =
-        animeDetailMapper.mapAnimeDetailInfoDtoToEntity(animeApi.loadAnimeDetails(animeId))
+        animeApi.loadAnimeDetails(animeId).let(animeDetailMapper::mapAnimeDetailInfoDtoToEntity)
 }

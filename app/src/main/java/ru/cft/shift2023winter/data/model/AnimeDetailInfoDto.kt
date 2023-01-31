@@ -1,6 +1,5 @@
 package ru.cft.shift2023winter.data.model
 
-
 data class AnimeDetailInfoDto (
     val title: String,
     val image: String,
