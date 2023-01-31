@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
-import ru.cft.shift2023winter.presentation.main.BestAnimeScreen
+import com.google.accompanist.themeadapter.material.MdcTheme
+import ru.cft.shift2023winter.presentation.bestanime.BestAnimeScreen
+import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +19,7 @@ class MainActivity : ComponentActivity() {
 	lateinit var viewModelFactory: ViewModelFactory
 
 	private val viewModel by lazy {
-		ViewModelProvider(this,viewModelFactory)[AnimeListViewModel::class.java]
+		ViewModelProvider(this,viewModelFactory)[BestAnimeViewModel::class.java]
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,9 @@ class MainActivity : ComponentActivity() {
 		super.onCreate(savedInstanceState)
 		viewModel.loadData()
 		setContent {
-			BestAnimeScreen(viewModel = viewModel)
+			MdcTheme {
+				BestAnimeScreen(viewModel = viewModel)
+			}
 		}
 	}
 }
