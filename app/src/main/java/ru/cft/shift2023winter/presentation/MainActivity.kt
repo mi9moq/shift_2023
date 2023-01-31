@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		component.inject(this)
 		super.onCreate(savedInstanceState)
-		viewModel.loadData()
 		setContent {
 			MdcTheme {
 				BestAnimeScreen(viewModel = viewModel)

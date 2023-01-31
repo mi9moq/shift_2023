@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +33,9 @@ fun BestAnimeScreen(
                 animeList = currentState.animeList,
                 onItemClickListener = {
                     //TODO()
-                }
+                },
+                viewModel = viewModel,
+                nextDataIsLoading = currentState.nextDataIsLoading
             )
         }
 
@@ -55,7 +58,9 @@ fun BestAnimeScreen(
 
 @Composable
 private fun BestAnime(
+    viewModel: BestAnimeViewModel,
     animeList: List<AnimeItem>,
+    nextDataIsLoading: Boolean,
     onItemClickListener: (AnimeItem) -> Unit
 ) {
     LazyColumn(
@@ -72,6 +77,23 @@ private fun BestAnime(
                     onItemClickListener(anime)
                 }
             )
+        }
+        item{
+            if(nextDataIsLoading){
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }else{
+                SideEffect {
+                    viewModel.loadNextData()
+                }
+            }
         }
     }
 }

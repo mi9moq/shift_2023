@@ -13,10 +13,21 @@ class AnimeRepositoryImpl @Inject constructor(
     private val animeDetailMapper: AnimeDetailMapper,
     private val animeApi: AnimeApi
 ) : AnimeRepository {
-    override suspend fun loadBestAnimeList(): List<AnimeItem> =
-        animeApi.loadPopularAnimeList().animeList.map {
-            animeItemMapper.mapAnimeItemDtoToEntity(it)
-        }
+    private var currentPage = 1
+    private var hasNextPage = true
+    private var list = listOf<AnimeItem>()
+    override suspend fun loadBestAnimeList(): List<AnimeItem> {
+        val nextPage = hasNextPage
+        val page = currentPage
+        if (list.isNotEmpty() && !nextPage) return list
+        val response = animeApi.loadPopularAnimeList(page)
+        currentPage++
+        hasNextPage = response.hasNextPage
+        val responseAnimeList =
+            response.animeList.map { animeItemMapper.mapAnimeItemDtoToEntity(it) }
+        list = responseAnimeList
+        return list
+    }
 
     override suspend fun loadAnimeDetail(animeId: String): AnimeDetailInfo =
         animeApi.loadAnimeDetails(animeId).let(animeDetailMapper::mapAnimeDetailInfoDtoToEntity)
