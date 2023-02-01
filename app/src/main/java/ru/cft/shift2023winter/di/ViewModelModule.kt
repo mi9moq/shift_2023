@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.presentation.find.FindAnimeViewModel
 
 @Module
 interface ViewModelModule {
@@ -19,4 +20,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AnimeDetailViewModel::class)
     fun bindAnimeDetailViewModel(viewModel: AnimeDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnimeDetailViewModel::class)
+    fun bindFindAnimeViewModel(viewModel: FindAnimeViewModel): ViewModel
 }
