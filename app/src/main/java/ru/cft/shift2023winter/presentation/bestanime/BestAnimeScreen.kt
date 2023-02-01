@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.AnimeItem
-import ru.cft.shift2023winter.presentation.AnimeListUiState
 
 @Composable
 fun BestAnimeScreen(
