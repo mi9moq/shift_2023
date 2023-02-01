@@ -3,25 +3,34 @@ package ru.cft.shift2023winter.presentation.main
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.cft.shift2023winter.navigation.AppNavGraph
 import ru.cft.shift2023winter.navigation.rememberNavigationState
+import ru.cft.shift2023winter.presentation.ViewModelFactory
+import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailScreen
+import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeScreen
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 
 @Composable
 fun MainScreen(
-    viewModel: BestAnimeViewModel
+    viewModelFactory: ViewModelFactory
 ) {
     val navigationState = rememberNavigationState()
+    val animeDetailViewModel: AnimeDetailViewModel = viewModel(
+        factory = viewModelFactory
+    )
+    val bestAnimeViewModel: BestAnimeViewModel = viewModel(
+        factory = viewModelFactory
+    )
 
     Scaffold(
         bottomBar = {
             BottomNavigation {
                 val navBackStackEntry =
                     navigationState.navHostController.currentBackStackEntryAsState()
-                //val currentRoute = navBackStackEntry.value?.destination?.route
                 val items = listOf(
                     NavigationItem.Home,
                     NavigationItem.Find,
@@ -35,7 +44,7 @@ fun MainScreen(
                     BottomNavigationItem(
                         selected = selected,
                         onClick = {
-                            if(!selected){
+                            if (!selected) {
                                 navigationState.navigateTo(item.screen.route)
                             }
                         },
@@ -55,10 +64,11 @@ fun MainScreen(
             navHostController = navigationState.navHostController,
             animeListScreenContent = {
                 BestAnimeScreen(
-                    viewModel = viewModel,
+                    viewModel = bestAnimeViewModel,
                     paddingValues = paddingValues,
                     onItemClickListener = {
-                        //TODO
+                        navigationState.navigateToDetail(it)
+                        animeDetailViewModel.loadAnimeDetail(it.id)
                     }
                 )
             },
@@ -68,8 +78,11 @@ fun MainScreen(
             favouriteScreenContent = {
                 Text(text = "favourite")
             },
-            animeDetailScreenContent = {animeId->
-
+            animeDetailScreenContent = { _ ->
+                AnimeDetailScreen(
+                    paddingValues = paddingValues,
+                    viewModel = animeDetailViewModel
+                )
             }
         )
     }
