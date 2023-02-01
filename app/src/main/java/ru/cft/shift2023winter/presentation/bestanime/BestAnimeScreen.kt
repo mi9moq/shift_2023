@@ -24,7 +24,9 @@ import ru.cft.shift2023winter.presentation.AnimeListUiState
 
 @Composable
 fun BestAnimeScreen(
-    viewModel: BestAnimeViewModel
+    viewModel: BestAnimeViewModel,
+    paddingValues: PaddingValues,
+    onItemClickListener: (AnimeItem) -> Unit
 ) {
     val screenState = viewModel.state.collectAsState()
     when (val currentState = screenState.value) {
@@ -32,9 +34,10 @@ fun BestAnimeScreen(
             BestAnime(
                 animeList = currentState.animeList,
                 onItemClickListener = {
-                    //TODO()
+                    onItemClickListener(it)
                 },
                 viewModel = viewModel,
+                paddingValues = paddingValues,
                 nextDataIsLoading = currentState.nextDataIsLoading
             )
         }
@@ -61,9 +64,11 @@ private fun BestAnime(
     viewModel: BestAnimeViewModel,
     animeList: List<AnimeItem>,
     nextDataIsLoading: Boolean,
+    paddingValues: PaddingValues,
     onItemClickListener: (AnimeItem) -> Unit
 ) {
     LazyColumn(
+        modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {

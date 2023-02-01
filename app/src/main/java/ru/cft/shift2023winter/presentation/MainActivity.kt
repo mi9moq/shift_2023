@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
 import com.google.accompanist.themeadapter.material.MdcTheme
-import ru.cft.shift2023winter.presentation.bestanime.BestAnimeScreen
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.presentation.main.MainScreen
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 		super.onCreate(savedInstanceState)
 		setContent {
 			MdcTheme {
-				BestAnimeScreen(viewModel = viewModel)
+				MainScreen(viewModel = viewModel)
 			}
 		}
 	}
