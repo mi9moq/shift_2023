@@ -4,9 +4,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import ru.cft.shift2023winter.navigation.AppNavGraph
-import ru.cft.shift2023winter.navigation.Screen
+import ru.cft.shift2023winter.navigation.rememberNavigationState
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeScreen
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 
@@ -14,11 +13,12 @@ import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 fun MainScreen(
     viewModel: BestAnimeViewModel
 ) {
-    val navHostController = rememberNavController()
+    val navigationState = rememberNavigationState()
     Scaffold(
         bottomBar = {
             BottomNavigation {
-                val navBackStackEntry = navHostController.currentBackStackEntryAsState()
+                val navBackStackEntry =
+                    navigationState.navHostController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry.value?.destination?.route
                 val items = listOf(
                     NavigationItem.Home,
@@ -29,13 +29,7 @@ fun MainScreen(
                     BottomNavigationItem(
                         selected = currentRoute == item.screen.route,
                         onClick = {
-                            navHostController.navigate(item.screen.route) {
-                                popUpTo(Screen.BestAnime.route) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+                            navigationState.navigateTo(item.screen.route)
                         },
                         icon = {
                             Icon(imageVector = item.icon, contentDescription = null)
@@ -50,7 +44,7 @@ fun MainScreen(
         }
     ) { paddingValues ->
         AppNavGraph(
-            navHostController = navHostController,
+            navHostController = navigationState.navHostController,
             homeScreenContent = {
                 BestAnimeScreen(
                     viewModel = viewModel,
