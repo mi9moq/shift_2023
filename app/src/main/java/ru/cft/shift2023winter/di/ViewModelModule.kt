@@ -23,6 +23,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AnimeDetailViewModel::class)
+    @ViewModelKey(FindAnimeViewModel::class)
     fun bindFindAnimeViewModel(viewModel: FindAnimeViewModel): ViewModel
 }
