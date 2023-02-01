@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.cft.shift2023winter.domain.usecase.LoadAnimeDetailUseCase
+import javax.inject.Inject
 
-class AnimeDetailViewModel(
+class AnimeDetailViewModel @Inject constructor(
     private val loadAnimeDetailUseCase: LoadAnimeDetailUseCase
 ) : ViewModel() {
 
