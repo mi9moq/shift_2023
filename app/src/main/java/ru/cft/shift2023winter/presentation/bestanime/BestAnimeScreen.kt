@@ -6,20 +6,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.AnimeItem
+import ru.cft.shift2023winter.presentation.ErrorMessage
 
 @Composable
 fun BestAnimeScreen(
@@ -123,20 +119,5 @@ private fun AnimeCard(
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = animeItem.title)
         }
-    }
-}
-
-@Composable
-private fun ErrorMessage(){
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Icon(
-            imageVector = Icons.Default.Warning,
-            contentDescription = null
-        )
-        Text(text = stringResource(R.string.error_message))
     }
 }

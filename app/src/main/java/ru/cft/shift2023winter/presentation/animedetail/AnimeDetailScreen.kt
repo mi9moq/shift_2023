@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
+import ru.cft.shift2023winter.presentation.ErrorMessage
 
 @Composable
 fun AnimeDetailScreen(
@@ -25,7 +26,7 @@ fun AnimeDetailScreen(
             AnimeDetail(animeDetail = currentState.animeInfo, paddingValues = paddingValues)
         }
         is AnimeDetailUiState.Error -> {
-
+            ErrorMessage()
         }
         AnimeDetailUiState.Initial -> Unit
         AnimeDetailUiState.Loading -> {
