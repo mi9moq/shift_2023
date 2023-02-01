@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.cft.shift2023winter.domain.entity.AnimeItem
 import ru.cft.shift2023winter.domain.usecase.LoadBestAnimeListUseCase
-import ru.cft.shift2023winter.presentation.AnimeListUiState
 import javax.inject.Inject
 
 class BestAnimeViewModel @Inject constructor(
