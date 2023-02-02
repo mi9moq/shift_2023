@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.animedetail
+package ru.cft.shift2023winter.ui.animedetail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

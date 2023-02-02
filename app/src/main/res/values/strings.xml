@@ -1,7 +1,9 @@
 <resources>
 	<string name="app_name">SHIFT 2023 Winter</string>
-    <string name="error_message">Произошла ошибка</string>
+    <string name="error_message">Unknown error</string>
     <string name="navigation_item_main">Main</string>
     <string name="navigation_item_favorite">Favorite</string>
     <string name="navigation_item_find">Find</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="sad_smile">Sad Smile</string>
 </resources>

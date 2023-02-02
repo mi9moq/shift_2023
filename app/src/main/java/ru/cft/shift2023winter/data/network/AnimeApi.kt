@@ -7,17 +7,15 @@ import ru.cft.shift2023winter.data.model.AnimeDetailInfoDto
 import ru.cft.shift2023winter.data.model.AnimeListResponse
 
 interface AnimeApi {
-    @GET("top-airing")
-    suspend fun loadPopularAnimeList(): AnimeListResponse
 
     @GET("top-airing")
-    suspend fun loadPopularAnimeList(@Query(QUERY_PARAM_PAGE) page: Int): AnimeListResponse
+    suspend fun loadPopularAnimeList(@Query("page") page: Int): AnimeListResponse
 
-    @GET("info/{$PATH_PARAM_ANIME_ID}")
-    suspend fun loadAnimeDetails(@Path(PATH_PARAM_ANIME_ID) animeId: String): AnimeDetailInfoDto
-
-    companion object {
-        private const val QUERY_PARAM_PAGE = "page"
-        private const val PATH_PARAM_ANIME_ID = "animeId"
-    }
+    @GET("info/{animeId}")
+    suspend fun loadAnimeDetails(@Path("animeId") animeId: String): AnimeDetailInfoDto
+    @GET("{title}")
+    suspend fun findAnimeByTitle(
+        @Path("title") title: String,
+        @Query("page") page:Int
+    ):AnimeListResponse
 }

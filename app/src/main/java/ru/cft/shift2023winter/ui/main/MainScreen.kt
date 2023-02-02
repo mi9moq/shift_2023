@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.main
+package ru.cft.shift2023winter.ui.main
 
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -9,10 +9,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.cft.shift2023winter.navigation.AppNavGraph
 import ru.cft.shift2023winter.navigation.rememberNavigationState
 import ru.cft.shift2023winter.presentation.ViewModelFactory
-import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailScreen
-import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
-import ru.cft.shift2023winter.presentation.bestanime.BestAnimeScreen
-import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.ui.animedetail.AnimeDetailScreen
+import ru.cft.shift2023winter.ui.animedetail.AnimeDetailViewModel
+import ru.cft.shift2023winter.ui.bestanime.BestAnimeScreen
+import ru.cft.shift2023winter.ui.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.ui.find.FindAnimeScreen
 
 @Composable
 fun MainScreen(
@@ -73,7 +74,7 @@ fun MainScreen(
                 )
             },
             findScreenContent = {
-                Text(text = "find")
+                FindAnimeScreen(viewModelFactory = viewModelFactory)
             },
             favouriteScreenContent = {
                 Text(text = "favourite")
