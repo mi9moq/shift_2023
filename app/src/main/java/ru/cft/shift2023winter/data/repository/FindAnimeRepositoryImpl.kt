@@ -13,12 +13,20 @@ class FindAnimeRepositoryImpl @Inject constructor(
     private var currentPage = 1
     private var hasNextPage = true
     private var list = listOf<AnimeItem>()
+    private var prevTitle = ""
     override suspend fun findAnimeByTitle(title: String): List<AnimeItem> {
         val nextPage = hasNextPage
-        val page = currentPage
+
+        val nextTitle = prevTitle
         if (list.isNotEmpty() && !nextPage) return list
+        if(nextTitle != title ){
+            currentPage = 1
+            prevTitle = title
+        }else{
+            currentPage++
+        }
+        val page = currentPage
         val response = animeApi.findAnimeByTitle(title,page)
-        currentPage++
         hasNextPage = response.hasNextPage
         val responseAnimeList =
             response.animeList.map { animeItemMapper.mapAnimeItemDtoToEntity(it) }
@@ -26,8 +34,3 @@ class FindAnimeRepositoryImpl @Inject constructor(
         return list
     }
 }
-
-//override suspend fun findAnimeByTitle(title: String): List<AnimeItem> =
-//    animeApi.findAnimeByTitle(title).animeList.map {
-//        animeItemMapper.mapAnimeItemDtoToEntity(it)
-//    }

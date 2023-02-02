@@ -26,7 +26,7 @@ class FindAnimeViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = FindAnimeUiState.Loading
             try {
-                val animeList = findAnimeByTitleUseCase(title)
+                animeList = findAnimeByTitleUseCase(title).toMutableList()
                 _state.value = FindAnimeUiState.Content(animeList)
             } catch (rethrow: CancellationException) {
                 throw rethrow
