@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
 import ru.cft.shift2023winter.presentation.ErrorMessage
+import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailUiState
+import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
 
 @Composable
 fun AnimeDetailScreen(

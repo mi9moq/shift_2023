@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import ru.cft.shift2023winter.ui.animedetail.AnimeDetailViewModel
-import ru.cft.shift2023winter.ui.bestanime.BestAnimeViewModel
-import ru.cft.shift2023winter.ui.find.FindAnimeViewModel
+import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
+import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.presentation.find.FindAnimeViewModel
 
 @Module
 interface ViewModelModule {

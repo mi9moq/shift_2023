@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.ui.animedetail
+package ru.cft.shift2023winter.presentation.animedetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
