@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.cft.shift2023winter.domain.entity.AnimeItem
 import ru.cft.shift2023winter.domain.usecase.LoadBestAnimeListUseCase
 import javax.inject.Inject
 
@@ -18,7 +17,6 @@ class BestAnimeViewModel @Inject constructor(
     private val _state: MutableStateFlow<AnimeListUiState> =
         MutableStateFlow(AnimeListUiState.Initial)
     val state: StateFlow<AnimeListUiState> = _state.asStateFlow()
-    private val animeList = mutableListOf<AnimeItem>()
 
     init {
         _state.value = AnimeListUiState.Loading
@@ -29,8 +27,10 @@ class BestAnimeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val newAnimeList = loadBestAnimeListUseCase()
-                animeList.addAll(newAnimeList)
-                _state.value = AnimeListUiState.Content(animeList)
+                _state.value = AnimeListUiState.Content(
+                    animeList = newAnimeList.toMutableList(),
+                    nextDataIsLoading = false
+                )
             } catch (rethrow: CancellationException) {
                 throw rethrow
             } catch (e: Exception) {
@@ -40,10 +40,18 @@ class BestAnimeViewModel @Inject constructor(
     }
 
     fun loadNextData(){
-        _state.value = AnimeListUiState.Content(
-            animeList,
-            nextDataIsLoading = true
-        )
-        loadData()
+        val currentState = (_state.value as? AnimeListUiState.Content) ?: return
+        _state.value = currentState.copy(nextDataIsLoading = true)
+        viewModelScope.launch {
+            try {
+                val newAnimeList = loadBestAnimeListUseCase()
+                currentState.animeList.addAll(newAnimeList)
+                _state.value = currentState.copy(nextDataIsLoading = false)
+            } catch (rethrow: CancellationException) {
+                throw rethrow
+            } catch (e: Exception) {
+                _state.value = AnimeListUiState.Error(e.message)
+            }
+        }
     }
 }

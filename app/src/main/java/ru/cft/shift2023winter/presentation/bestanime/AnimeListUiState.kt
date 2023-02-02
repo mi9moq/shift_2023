@@ -9,8 +9,8 @@ sealed interface AnimeListUiState{
     object Loading: AnimeListUiState
 
     data class Content(
-        val animeList: List<AnimeItem>,
-        val nextDataIsLoading: Boolean = false
+        val animeList: MutableList<AnimeItem>,
+        val nextDataIsLoading: Boolean
     ): AnimeListUiState
 
     data class Error(val message: String?): AnimeListUiState
