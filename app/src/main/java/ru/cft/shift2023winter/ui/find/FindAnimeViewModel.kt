@@ -3,7 +3,6 @@ package ru.cft.shift2023winter.ui.find
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,7 +39,6 @@ class FindAnimeViewModel @Inject constructor(
     fun loadNextAnimeByTitle() {
         _state.value = FindAnimeUiState.Content(animeList, true)
         viewModelScope.launch {
-            delay(5000)
             try {
                 val newAnimeList = findAnimeByTitleUseCase(prevTitle)
                 animeList.addAll(newAnimeList)
