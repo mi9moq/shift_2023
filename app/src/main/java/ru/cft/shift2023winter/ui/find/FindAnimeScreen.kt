@@ -76,7 +76,7 @@ private fun NothingFind() {
         Text(text = stringResource(R.string.nothing_found))
         Spacer(modifier = Modifier.height(16.dp))
         Image(
-            painter = painterResource(id = R.drawable.ic_sad_smile),
+            painter = painterResource(id = R.drawable.ic_nothing_find),
             contentDescription = stringResource(R.string.sad_smile)
         )
     }
@@ -98,6 +98,9 @@ private fun TextField(
         onValueChange = {
             text = it
             onValueChange(it)
+        },
+        label = {
+            Text(text = stringResource(R.string.entry_title))
         }
     )
 }

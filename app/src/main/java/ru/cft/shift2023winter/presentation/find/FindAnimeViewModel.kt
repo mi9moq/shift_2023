@@ -19,6 +19,10 @@ class FindAnimeViewModel @Inject constructor(
     val state: StateFlow<FindAnimeUiState> = _state.asStateFlow()
 
     fun findAnimeByTitle(title: String) {
+        if (title.length < 2) {
+            _state.value = FindAnimeUiState.Initial
+            return
+        }
         viewModelScope.launch {
             _state.value = FindAnimeUiState.Loading
             try {
