@@ -12,6 +12,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.domain.entity.AnimeItem
@@ -33,7 +34,9 @@ fun BestAnimeScreen(
                 onItemClickListener = {
                     onItemClickListener(it)
                 },
-                viewModel = viewModel,
+                onLoaded = {
+                    viewModel.loadNextData()
+                },
                 paddingValues = paddingValues,
                 nextDataIsLoading = currentState.nextDataIsLoading
             )
@@ -58,7 +61,7 @@ fun BestAnimeScreen(
 
 @Composable
 private fun BestAnime(
-    viewModel: BestAnimeViewModel,
+    onLoaded: () -> Unit,
     animeList: List<AnimeItem>,
     nextDataIsLoading: Boolean,
     paddingValues: PaddingValues,
@@ -67,7 +70,7 @@ private fun BestAnime(
     LazyColumn(
         modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
             items = animeList,
@@ -80,8 +83,8 @@ private fun BestAnime(
                 }
             )
         }
-        item{
-            if(nextDataIsLoading){
+        item {
+            if (nextDataIsLoading) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -91,9 +94,9 @@ private fun BestAnime(
                 ) {
                     CircularProgressIndicator()
                 }
-            }else{
+            } else {
                 SideEffect {
-                    viewModel.loadNextData()
+                    onLoaded()
                 }
             }
         }
@@ -110,7 +113,10 @@ private fun AnimeCard(
         .clickable {
             onItemClickListener()
         }) {
-        Column(modifier = Modifier.padding(8.dp)) {
+        Column(
+            modifier = Modifier.padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             AsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -119,7 +125,7 @@ private fun AnimeCard(
                 contentDescription = null
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = animeItem.title)
+            Text(text = animeItem.title, fontWeight = FontWeight.W500)
         }
     }
 }
