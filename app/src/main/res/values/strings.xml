@@ -8,5 +8,9 @@
     <string name="sad_smile">Sad Smile</string>
     <string name="to_be_continued">TO BE CONTINUED…</string>
     <string name="work_in_progress">work in progress</string>
-    <string name="releas_date">Release Date:</string>
+    <string name="release_date">"Release Date: "</string>
+    <string name="genres">"Genres: "</string>
+    <string name="total_episodes">"Total episodes: "</string>
+    <string name="anime_type">"Type: "</string>
+    <string name="anime_status">"Status: "</string>
 </resources>

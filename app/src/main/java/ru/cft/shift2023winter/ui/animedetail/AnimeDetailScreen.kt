@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
@@ -47,7 +48,7 @@ fun AnimeDetailScreen(
 @Composable
 private fun AnimeDetail(
     animeDetail: AnimeDetailInfo,
-    paddingValues: PaddingValues,
+    paddingValues: PaddingValues
 ) {
     Card(
         modifier = Modifier
@@ -59,7 +60,11 @@ private fun AnimeDetail(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                Text(text = animeDetail.title)
+                Text(
+                    text = animeDetail.title,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.W500
+                )
                 Spacer(modifier = Modifier.height(8.dp))
                 AsyncImage(
                     model = animeDetail.image,
@@ -67,13 +72,49 @@ private fun AnimeDetail(
                     modifier = Modifier.height(300.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = stringResource(R.string.genres),
+                        fontWeight = FontWeight.W500
+                    )
+                    Text(text = animeDetail.genres.joinToString(", "))
+                }
+                Spacer(modifier = Modifier.height(8.dp))
                 if (animeDetail.releaseDate != null) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Text(
-                            text = stringResource(R.string.releas_date),
+                            text = stringResource(R.string.release_date),
                             fontWeight = FontWeight.W500
                         )
-                        Text(text = "${animeDetail.releaseDate}")
+                        Text(text = animeDetail.releaseDate)
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                if (animeDetail.totalEpisodes != 0) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = stringResource(R.string.total_episodes),
+                            fontWeight = FontWeight.W500
+                        )
+                        Text(text = animeDetail.totalEpisodes.toString())
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = stringResource(R.string.anime_status),
+                        fontWeight = FontWeight.W500
+                    )
+                    Text(text = animeDetail.status)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                if (animeDetail.type != null) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = stringResource(R.string.anime_type),
+                            fontWeight = FontWeight.W500
+                        )
+                        Text(text = animeDetail.type)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
