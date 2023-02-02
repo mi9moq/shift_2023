@@ -10,7 +10,8 @@ sealed interface FindAnimeUiState{
 
     data class Content(
         val animeList: MutableList<AnimeItem>,
-        val nextDataIsLoading: Boolean
+        val nextDataIsLoading: Boolean,
+        val title: String
         ): FindAnimeUiState
 
     data class Error(val message: String?): FindAnimeUiState

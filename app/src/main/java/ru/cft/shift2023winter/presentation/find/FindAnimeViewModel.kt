@@ -17,17 +17,16 @@ class FindAnimeViewModel @Inject constructor(
     private val _state: MutableStateFlow<FindAnimeUiState> =
         MutableStateFlow(FindAnimeUiState.Initial)
     val state: StateFlow<FindAnimeUiState> = _state.asStateFlow()
-    private var prevTitle = ""
 
     fun findAnimeByTitle(title: String) {
-        prevTitle = title
         viewModelScope.launch {
             _state.value = FindAnimeUiState.Loading
             try {
                 val animeList = findAnimeByTitleUseCase(title)
                 _state.value = FindAnimeUiState.Content(
                     animeList = animeList.toMutableList(),
-                    nextDataIsLoading = false
+                    nextDataIsLoading = false,
+                    title = title
                 )
             } catch (rethrow: CancellationException) {
                 throw rethrow
@@ -42,7 +41,9 @@ class FindAnimeViewModel @Inject constructor(
         _state.value = currentState.copy(nextDataIsLoading = true)
         viewModelScope.launch {
             try {
-                val newDownloadedList = findAnimeByTitleUseCase(prevTitle)
+                val newDownloadedList = findAnimeByTitleUseCase(
+                    currentState.title
+                )
                 currentState.animeList.addAll(newDownloadedList)
                 _state.value = currentState.copy(nextDataIsLoading = false)
             } catch (rethrow: CancellationException) {
