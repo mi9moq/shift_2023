@@ -29,7 +29,7 @@ fun FindAnimeScreen(
     val viewModel: FindAnimeViewModel = viewModel(factory = viewModelFactory)
     val screenState = viewModel.state.collectAsState()
     Column(
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier.padding(top = 16.dp, bottom = 40.dp)
     ) {
         TextField(onValueChange = {
             viewModel.findAnimeByTitle(it)
@@ -40,7 +40,11 @@ fun FindAnimeScreen(
                 if (currentState.animeList.isEmpty()) {
                     NothingFind()
                 } else {
-                    BestAnime(animeList = currentState.animeList)
+                    FoundAnime(
+                        animeList = currentState.animeList,
+                        viewModel = viewModel,
+                        nextDataIsLoading = currentState.nextDataIsLoading,
+                    )
                 }
             }
             is FindAnimeUiState.Error -> {
@@ -97,8 +101,10 @@ private fun TextField(
 }
 
 @Composable
-private fun BestAnime(
+private fun FoundAnime(
+    viewModel: FindAnimeViewModel,
     animeList: List<AnimeItem>,
+    nextDataIsLoading: Boolean
 ) {
     LazyColumn(
         contentPadding = PaddingValues(8.dp),
@@ -111,6 +117,23 @@ private fun BestAnime(
             AnimeCard(
                 animeItem = anime
             )
+        }
+        item{
+            if(nextDataIsLoading){
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }else{
+                SideEffect {
+                    viewModel.loadNextAnimeByTitle()
+                }
+            }
         }
     }
 }

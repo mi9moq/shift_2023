@@ -13,7 +13,9 @@ interface AnimeApi {
 
     @GET("info/{animeId}")
     suspend fun loadAnimeDetails(@Path("animeId") animeId: String): AnimeDetailInfoDto
-
     @GET("{title}")
-    suspend fun findAnimeByTitle(@Path("title") title: String):AnimeListResponse
+    suspend fun findAnimeByTitle(
+        @Path("title") title: String,
+        @Query("page") page:Int
+    ):AnimeListResponse
 }

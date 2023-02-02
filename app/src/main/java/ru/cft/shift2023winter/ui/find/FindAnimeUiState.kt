@@ -8,7 +8,10 @@ sealed interface FindAnimeUiState{
 
     object Loading: FindAnimeUiState
 
-    data class Content(val animeList: List<AnimeItem>): FindAnimeUiState
+    data class Content(
+        val animeList: List<AnimeItem>,
+        val nextDataIsLoading: Boolean = false
+        ): FindAnimeUiState
 
     data class Error(val message: String?): FindAnimeUiState
 }
