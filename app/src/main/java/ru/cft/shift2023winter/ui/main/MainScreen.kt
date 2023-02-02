@@ -13,6 +13,7 @@ import ru.cft.shift2023winter.ui.animedetail.AnimeDetailScreen
 import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
 import ru.cft.shift2023winter.ui.bestanime.BestAnimeScreen
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
+import ru.cft.shift2023winter.ui.favourite.FavouriteScreen
 import ru.cft.shift2023winter.ui.find.FindAnimeScreen
 
 @Composable
@@ -77,7 +78,7 @@ fun MainScreen(
                 FindAnimeScreen(viewModelFactory = viewModelFactory)
             },
             favouriteScreenContent = {
-                Text(text = "favourite")
+                FavouriteScreen()
             },
             animeDetailScreenContent = { _ ->
                 AnimeDetailScreen(

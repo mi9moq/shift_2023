@@ -6,4 +6,6 @@
     <string name="navigation_item_find">Find</string>
     <string name="nothing_found">Nothing found</string>
     <string name="sad_smile">Sad Smile</string>
+    <string name="to_be_continued">TO BE CONTINUED…</string>
+    <string name="work_in_progress">work in progress</string>
 </resources>
