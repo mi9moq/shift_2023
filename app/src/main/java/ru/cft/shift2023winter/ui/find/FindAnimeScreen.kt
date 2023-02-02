@@ -21,6 +21,8 @@ import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.AnimeItem
 import ru.cft.shift2023winter.presentation.ErrorMessage
 import ru.cft.shift2023winter.presentation.ViewModelFactory
+import ru.cft.shift2023winter.presentation.find.FindAnimeUiState
+import ru.cft.shift2023winter.presentation.find.FindAnimeViewModel
 
 @Composable
 fun FindAnimeScreen(

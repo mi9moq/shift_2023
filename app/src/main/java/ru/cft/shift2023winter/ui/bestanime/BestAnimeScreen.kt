@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.domain.entity.AnimeItem
 import ru.cft.shift2023winter.presentation.ErrorMessage
+import ru.cft.shift2023winter.presentation.bestanime.AnimeListUiState
+import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 
 @Composable
 fun BestAnimeScreen(
