@@ -8,7 +8,7 @@ class AnimeDetailMapper @Inject constructor() {
     fun mapAnimeDetailInfoDtoToEntity(anime: AnimeDetailInfoDto) = AnimeDetailInfo(
         title = anime.title,
         image = anime.image,
-        releasedDate = anime.releasedDate,
+        releaseDate = anime.releaseDate,
         description = anime.description,
         genres = anime.genres,
         type = anime.type,

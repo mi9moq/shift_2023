@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.AnimeDetailInfo
 import ru.cft.shift2023winter.presentation.ErrorMessage
 import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailUiState
@@ -65,8 +67,14 @@ private fun AnimeDetail(
                     modifier = Modifier.height(300.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                if (animeDetail.releasedDate != null) {
-                    Text(text = "Release Date: ${animeDetail.releasedDate}")
+                if (animeDetail.releaseDate != null) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = stringResource(R.string.releas_date),
+                            fontWeight = FontWeight.W500
+                        )
+                        Text(text = "${animeDetail.releaseDate}")
+                    }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
                 if (animeDetail.description != null) {

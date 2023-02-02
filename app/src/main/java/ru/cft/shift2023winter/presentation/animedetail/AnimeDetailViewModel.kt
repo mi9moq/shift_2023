@@ -1,5 +1,6 @@
 package ru.cft.shift2023winter.presentation.animedetail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CancellationException
@@ -23,6 +24,8 @@ class AnimeDetailViewModel @Inject constructor(
             _state.value = AnimeDetailUiState.Loading
             try {
                 val animeDetail = loadAnimeDetailUseCase(animeId)
+
+                Log.d("animeDetail",animeDetail.toString())
                 _state.value = AnimeDetailUiState.Content(animeDetail)
             } catch (rethrow: CancellationException) {
                 throw rethrow
