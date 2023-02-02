@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.bestanime
+package ru.cft.shift2023winter.ui.bestanime
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

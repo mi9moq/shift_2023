@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.google.accompanist.themeadapter.material.MdcTheme
-import ru.cft.shift2023winter.presentation.main.MainScreen
+import ru.cft.shift2023winter.ui.main.MainScreen
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {

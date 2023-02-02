@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.main
+package ru.cft.shift2023winter.ui.main
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite

@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.bestanime
+package ru.cft.shift2023winter.ui.bestanime
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.find
+package ru.cft.shift2023winter.ui.find
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

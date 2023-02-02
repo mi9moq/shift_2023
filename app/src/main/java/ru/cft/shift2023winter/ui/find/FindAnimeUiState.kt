@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.find
+package ru.cft.shift2023winter.ui.find
 
 import ru.cft.shift2023winter.domain.entity.AnimeItem
 
