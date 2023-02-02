@@ -22,7 +22,7 @@ fun ErrorMessage(){
     ) {
         Icon(
             imageVector = Icons.Default.Warning,
-            contentDescription = null
+            contentDescription = stringResource(R.string.error_message)
         )
         Text(text = stringResource(R.string.error_message))
     }
