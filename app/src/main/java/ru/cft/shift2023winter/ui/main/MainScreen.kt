@@ -31,8 +31,7 @@ fun MainScreen(
                     navigationState.navHostController.currentBackStackEntryAsState()
                 val items = listOf(
                     NavigationItem.Home,
-                    NavigationItem.Find,
-                    NavigationItem.Favorite
+                    NavigationItem.Find
                 )
                 items.forEach { item ->
                     val selected = navBackStackEntry.value?.destination?.hierarchy?.any {
