@@ -45,7 +45,7 @@ fun FindAnimeScreen(
                     FoundAnime(
                         animeList = currentState.animeList,
                         viewModel = viewModel,
-                        nextDataIsLoading = currentState.nextDataIsLoading,
+                        nextDataIsLoading = currentState.nextDataIsLoading
                     )
                 }
             }
@@ -71,12 +71,12 @@ private fun NothingFind() {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = stringResource(R.string.nothing_found))
         Spacer(modifier = Modifier.height(16.dp))
         Image(
-            painter = painterResource(id = R.drawable.ic_sad_smile),
+            painter = painterResource(id = R.drawable.ic_nothing_find),
             contentDescription = stringResource(R.string.sad_smile)
         )
     }
@@ -98,6 +98,9 @@ private fun TextField(
         onValueChange = {
             text = it
             onValueChange(it)
+        },
+        label = {
+            Text(text = stringResource(R.string.entry_title))
         }
     )
 }
@@ -148,7 +151,10 @@ private fun AnimeCard(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Column(modifier = Modifier.padding(8.dp)) {
+        Column(
+            modifier = Modifier.padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             AsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
