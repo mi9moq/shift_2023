@@ -14,18 +14,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import ru.cft.shift2023winter.domain.entity.AnimeItem
 import ru.cft.shift2023winter.presentation.ErrorMessage
+import ru.cft.shift2023winter.presentation.ViewModelFactory
 import ru.cft.shift2023winter.presentation.bestanime.AnimeListUiState
 import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 
 @Composable
 fun BestAnimeScreen(
-    viewModel: BestAnimeViewModel,
+    viewModelFactory: ViewModelFactory,
     paddingValues: PaddingValues,
     onItemClickListener: (AnimeItem) -> Unit
 ) {
+    val viewModel: BestAnimeViewModel = viewModel(
+        factory = viewModelFactory
+    )
     val screenState = viewModel.state.collectAsState()
     when (val currentState = screenState.value) {
         is AnimeListUiState.Content -> {

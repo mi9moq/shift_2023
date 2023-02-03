@@ -9,10 +9,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.cft.shift2023winter.navigation.AppNavGraph
 import ru.cft.shift2023winter.navigation.rememberNavigationState
 import ru.cft.shift2023winter.presentation.ViewModelFactory
-import ru.cft.shift2023winter.ui.animedetail.AnimeDetailScreen
 import ru.cft.shift2023winter.presentation.animedetail.AnimeDetailViewModel
+import ru.cft.shift2023winter.ui.animedetail.AnimeDetailScreen
 import ru.cft.shift2023winter.ui.bestanime.BestAnimeScreen
-import ru.cft.shift2023winter.presentation.bestanime.BestAnimeViewModel
 import ru.cft.shift2023winter.ui.favourite.FavouriteScreen
 import ru.cft.shift2023winter.ui.find.FindAnimeScreen
 
@@ -22,9 +21,6 @@ fun MainScreen(
 ) {
     val navigationState = rememberNavigationState()
     val animeDetailViewModel: AnimeDetailViewModel = viewModel(
-        factory = viewModelFactory
-    )
-    val bestAnimeViewModel: BestAnimeViewModel = viewModel(
         factory = viewModelFactory
     )
 
@@ -66,7 +62,7 @@ fun MainScreen(
             navHostController = navigationState.navHostController,
             animeListScreenContent = {
                 BestAnimeScreen(
-                    viewModel = bestAnimeViewModel,
+                    viewModelFactory = viewModelFactory,
                     paddingValues = paddingValues,
                     onItemClickListener = {
                         navigationState.navigateToDetail(it)
